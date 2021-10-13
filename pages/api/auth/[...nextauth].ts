@@ -1,0 +1,18 @@
+import NextAuth from 'next-auth';
+import Providers from 'next-auth/providers';
+
+export default (req, res) => {
+    return NextAuth(req, res, {
+        providers: [
+            Providers.Slack({
+                clientId: process.env.SLACK_CLIENT_ID,
+                clientSecret: process.env.SLACK_CLIENT_SECRET,
+            }),
+        ],
+        callbacks: {
+            async session(session, user) {
+                return user;
+            },
+        },
+    });
+};

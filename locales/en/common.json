@@ -1,0 +1,5 @@
+{
+    "greeting": {
+        "welcome": "Oh, heeeeeey {{name}} 👋"
+    }
+}
