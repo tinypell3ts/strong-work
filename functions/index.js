@@ -21,8 +21,11 @@ exports.handler = functions.https.onRequest(async (req, res) => {
         const reaction = body.event.reaction;
         let receipt;
 
-        // @todo don't reward if user and other_user match
-        if (user && reaction === functions.config().reaction.key) {
+        if (
+            user &&
+            reaction === functions.config().reaction.key &&
+            user != other_user
+        ) {
             const contractAddress = functions.config().contract_address.key;
             const provider = new ethers.providers.JsonRpcProvider(
                 functions.config().rpc_url.key,
@@ -39,9 +42,10 @@ exports.handler = functions.https.onRequest(async (req, res) => {
             const addressExists = await contract.functions.getAddresss(user);
             if (addressExists) {
                 const tx = await contract.functions.reward(user, {
+                    //@todo get gasLimit from contract
                     gasLimit: ethers.utils.hexlify(250000),
                     //@todo get latest FAST gas price
-                    gasPrice: ethers.utils.parseUnits('40', 'gwei'),
+                    gasPrice: ethers.utils.parseUnits('10', 'gwei'),
                 });
                 receipt = await tx.wait();
             }
