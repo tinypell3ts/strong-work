@@ -5,7 +5,9 @@ type WalletState = {
     address: string;
     network: string;
     balance: string;
-    wallet: object;
+    wallet: {
+        provider?: object;
+    };
     onboard: any;
     notify: any;
     setAddress: (item?: string) => void;
