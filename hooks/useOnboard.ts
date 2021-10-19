@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useWalletStore } from '../stores';
 export default function useOnboard() {
     const {
@@ -21,6 +22,34 @@ export default function useOnboard() {
         if (onboard) {
             await onboard.walletSelect(previouslySelectedWallet);
             await onboard.walletCheck();
+        }
+    }
+
+    useEffect(() => {
+        if (wallet?.provider) {
+            addNetwork();
+        }
+    }, [wallet]);
+
+    async function addNetwork() {
+        const params = [
+            {
+                chainId: '0x13881',
+                chainName: 'Matic(Polygon) Testnet Mumbai',
+                nativeCurrency: {
+                    name: 'tMATIC',
+                    symbol: 'tMATIC',
+                    decimals: 18,
+                },
+                rpcUrls: ['https://rpc-mumbai.matic.today'],
+                blockExplorerUrls: ['https://mumbai.polygonscan.com'],
+            },
+        ];
+        if ((window as any).ethereum) {
+            (window as any).ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params,
+            });
         }
     }
 
