@@ -29,7 +29,6 @@ export default function Header() {
                     setWallet(wallet);
                     window.localStorage.setItem('selectedWallet', wallet.name);
                 } else {
-                    //@ts-ignore
                     setWallet();
                 }
             },

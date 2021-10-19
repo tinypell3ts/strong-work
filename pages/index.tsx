@@ -39,7 +39,6 @@ function HomePage() {
 
                             <Button
                                 disabled={isLoading}
-                                //@ts-ignore
                                 onClick={() => handleAdd(session.sub)}
                             >
                                 {isLoading

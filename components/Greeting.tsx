@@ -2,7 +2,7 @@ import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 
 export default function Greeting({ session }) {
-    const { t, lang } = useTranslation('common');
+    const { t } = useTranslation('common');
 
     return (
         <div>
