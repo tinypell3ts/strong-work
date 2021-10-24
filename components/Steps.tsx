@@ -4,10 +4,11 @@ import { CheckIcon } from '@heroicons/react/solid';
 
 import { useWalletStore } from '../stores';
 
-export default function Steps() {
-    const isServer = () => typeof window === 'undefined';
-    if (isServer()) return null;
+interface StepsProps {
+    onSuccess: boolean;
+}
 
+export default function Steps({ onSuccess }: StepsProps) {
     const { address, balance } = useWalletStore();
     const [session] = useSession();
     const { t } = useTranslation('common');
@@ -45,7 +46,7 @@ export default function Steps() {
             title: t('steps.participate.title'),
             content: t('steps.participate.content'),
             iconBackground: 'bg-green-400',
-            conditional: false,
+            conditional: session && onSuccess,
         },
     ];
 

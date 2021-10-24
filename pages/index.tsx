@@ -7,6 +7,9 @@ import { handleParticipation } from '../helpers';
 import useTranslation from 'next-translate/useTranslation';
 
 function HomePage() {
+    const isServer = () => typeof window === 'undefined';
+    if (isServer()) return null;
+
     const [session] = useSession();
     const { address } = useWalletStore();
     const { t } = useTranslation('common');
@@ -67,7 +70,7 @@ function HomePage() {
                     height={window.innerHeight}
                 />
             )}
-            <Steps />
+            <Steps onSuccess={onSuccess} />
         </div>
     );
 }
