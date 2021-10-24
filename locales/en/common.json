@@ -1,5 +1,33 @@
 {
     "greeting": {
-        "welcome": "Oh, heeeeeey {{name}} 👋"
+        "welcome": "Oh, heeeeeey {{name}} 👋",
+        "about": {
+            "title": "What's this all about?",
+            "content": "Strong work allows teams to rewards each other crypto by reacting positively to each others messages. Visit the #strong-work channel in Slack and add a 💪 reaction to a message"
+        }
+    },
+    "steps": {
+        "install-metamask": {
+            "title": "Install Metamask",
+            "content": "Metamask is a wallet that is used to make blockchain transactions. Click here for a guide on how to install the Metamask chrome extension.",
+            "url": "https://blog.wetrust.io/how-to-install-and-use-metamask-7210720ca047"
+        },
+        "connect-wallet": {
+            "title": "Connect Wallet",
+            "content": "We use the Polygon Mumbai Network to send transactions. Press Connect to add this network to your Metamask wallet and connect to this website. Once connected, you will see your wallet address appear in the top right corner of this page."
+        },
+        "get-matic": {
+            "title": "Deposit some MATIC token to your wallet",
+            "content": "You need to pay a network fee each time you make a blockchain transaction. As previously mentioned we're using the Polygon Mumbai Network. This is a test network, so click here to get some FREE MATIC. Simply, copy your wallet address from the top of the page and paste it in the wallet address box on the Faucet website.",
+            "url": "https://faucet.polygon.technology"
+        },
+        "sign-in-with-slack": {
+            "title": "Sign in with Slack",
+            "content": "We need your Slack user ID for the next step. Please press Sign in with Slack to authenticate with Slack"
+        },
+        "participate": {
+            "title": "Participate",
+            "content": "To reward you for your hard work, we need to link your Slack user ID and wallet address. Press participate, metamask will open and will ask you to confirm a transaction. Confirm the transaction and wait for the Success screen!"
+        }
     }
 }

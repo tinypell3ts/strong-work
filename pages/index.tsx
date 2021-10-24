@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import Confetti from 'react-confetti';
-import { Button, Greeting, Login } from '../components';
+import { Button, Greeting, Login, Steps } from '../components';
+import { useWalletStore } from '../stores';
 import { useSession } from 'next-auth/client';
 import { handleParticipation } from '../helpers';
+import useTranslation from 'next-translate/useTranslation';
 
 function HomePage() {
     const [session] = useSession();
+    const { address } = useWalletStore();
+    const { t } = useTranslation('common');
     const [confetti, setConfetti] = useState<boolean>(false);
     const [isLoading, setLoading] = useState<boolean>(false);
     const [onSuccess, setSuccess] = useState<boolean>(false);
@@ -21,7 +25,7 @@ function HomePage() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-start">
+        <div className="flex flex-col justify-start mx-8">
             {session ? (
                 <div>
                     {onSuccess ? (
@@ -49,7 +53,13 @@ function HomePage() {
                     )}
                 </div>
             ) : (
-                <Login />
+                <>
+                    <h1 className="text-3xl tracking-tighter font-bold">
+                        {t('greeting.about.title')}
+                    </h1>
+                    <p>{t('greeting.about.content')}</p>
+                    {address && <Login />}
+                </>
             )}
             {confetti && !isLoading && (
                 <Confetti
@@ -57,6 +67,7 @@ function HomePage() {
                     height={window.innerHeight}
                 />
             )}
+            <Steps />
         </div>
     );
 }
