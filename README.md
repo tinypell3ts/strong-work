@@ -6,24 +6,24 @@
 
 https://user-images.githubusercontent.com/7047410/137898175-58fe89b1-e181-4a50-bcdb-0a72380966ce.mp4
 
+*Please note: You can't reward yourself, the check was removed for the purposes of this demo.*
+
 
 # How it works
-Strong works a made up of a slack app, smart contract, a cloud function and a front-end.
+Strong works consists of a slack app, smart contract, a cloud function and a front-end.
 
 ## Slack App
-Slack was used for this PoC but another service with a webhooks API (such as discord or telegram) could be used instead. The slack app does a few important things. 
+Slack was used for this PoC, however another service with a webhooks API (such as discord or telegram) could be used instead. The slack app does a few important things. 
 
-- It handles the oAuth in the frontend 
+- It handles the Slack OAuth in the frontend 
 - listens out for the `reaction:read` event in a specific channel
-- Posts a message in the channel with a link to the blockchain transaction receipt.
+- Posts a message in the channel with a link to the confirmed blockchain transaction receipt.
 
 ## [Smart contract](https://github.com/coeu5a/strong-work/blob/master/contracts/StrongWork.sol)
 The smart contract comprises of two (non-admin) functions. Update and reward. The update function adds a mapping of the users slack ID to their ethereum address and the reward function, you guessed it....rewards the user. 
 
 ## [Cloud function](https://github.com/coeu5a/strong-work/tree/master/functions)
 Slack's event API calls an endpoint when certain events happen. In this instance, the cloud function is called when the `reaction:added` event is fired. The cloud function then does a couple of checks and calls the reward function in the smart contract sending along with it the Slack ID of the receiver of the reaction. 
-
-
 
 ## Frontend
 The frontend is a simple NextJS app. A mapping of the users ethereum address and slack ID needs to be added to the smart contract in order for them to receive rewards. The main functions of the frontend app are -
