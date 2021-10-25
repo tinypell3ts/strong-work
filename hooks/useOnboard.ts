@@ -28,6 +28,8 @@ export default function useOnboard() {
     useEffect(() => {
         if (wallet?.provider) {
             addNetwork();
+            //@todo figure out UX for non-crypto nuts.
+            // addToken();
         }
     }, [wallet]);
 
@@ -50,6 +52,27 @@ export default function useOnboard() {
                 method: 'wallet_addEthereumChain',
                 params,
             });
+        }
+    }
+
+    async function addToken() {
+        const params = {
+            type: 'ERC20',
+            options: {
+                address: '0xb85996484ED7726eb2BF480E7DfE6Db6Dc0Ce39a',
+                symbol: 'SWK',
+                decimals: 18,
+                image: 'https://user-images.githubusercontent.com/7047410/137898069-5a4fa361-68ae-49f6-886e-e80bb13c608d.png',
+            },
+        };
+
+        if ((window as any).ethereum) {
+            (window as any).ethereum
+                .request({
+                    method: 'wallet_watchAsset',
+                    params,
+                })
+                .then((result) => console.log({ result }));
         }
     }
 

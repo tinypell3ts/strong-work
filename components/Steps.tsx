@@ -13,8 +13,6 @@ export default function Steps({ onSuccess }: StepsProps) {
     const [session] = useSession();
     const { t } = useTranslation('common');
 
-    console.log({ balance });
-
     const timeline = [
         {
             title: t('steps.install-metamask.title'),
@@ -59,7 +57,7 @@ export default function Steps({ onSuccess }: StepsProps) {
     }
 
     return (
-        <div className="flow-root mt-5">
+        <div className="flow-root my-5">
             <h1 className="text-3xl tracking-tighter font-bold">
                 Instructions
             </h1>
@@ -67,7 +65,7 @@ export default function Steps({ onSuccess }: StepsProps) {
                 {timeline.map((event, eventIdx) => (
                     <li key={eventIdx}>
                         <a href={event.url} target="_blank">
-                            <div className="relative pb-8">
+                            <div className="relative mb-8">
                                 <div className="relative flex items-center space-x-3">
                                     <div>
                                         <span
